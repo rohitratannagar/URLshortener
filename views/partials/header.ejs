@@ -1,0 +1,17 @@
+<header class="home-header">
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-link"></i> <span>Slink</span>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/me" class="<%= currentPage === 'profile' ? 'active' : '' %>"><i class="fas fa-user"></i> Profile</a></li>
+      <li><a href="/allURLs"><i class="fas fa-link"></i> URLs</a></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Request</title>
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/makeRequest.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <%- include("partials/header") %>
+
+  <div class="request-container">
+    <div class="request-card">
+      <h2><i class="fas fa-envelope-open-text"></i> Submit Your Request</h2>
+      <form method="POST" action="/user/request">
+        <textarea name="message" rows="6" placeholder="Write your request here..." required></textarea>
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <% if (typeof success !== 'undefined' && success) { %>
+    <div id="successMessage" class="success-message">
+      Your request has been submitted successfully!
+    </div>
+
+    <script>
+      // Wait 3 seconds (3000ms), then fade out the message
+      setTimeout(() => {
+        const msg = document.getElementById('successMessage');
+        if (msg) {
+          msg.style.opacity = '0';
+          msg.style.transition = 'opacity 0.5s ease-out';
+          setTimeout(() => msg.style.display = 'none', 500); // hide after fade
+        }
+      }, 3000); // show for 3 seconds
+    </script>
+  <% } %>
+  
+  <%- include("partials/header-scripts") %>
+</body>
+</html>

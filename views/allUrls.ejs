@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Shortened URLs</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/URLs.css" />
+</head>
+<body>
+  <!-- Header -->
+  <%- include("./partials/header") %>
+
+  <div class="url-history-container">
+    <h1><i class="fas fa-list"></i> Your Shortened URLs</h1>
+
+    <% if (urls && urls.length > 0) { %>
+      <% if (locals.role === 'ADMIN') { %>
+        <div class="url-header-actions">
+          <% if (!locals.data) { %>
+            <a href="/admin/allURLs" class="btn-add-url">
+              <i class="fas fa-plus"></i>
+              See everybody's URLs
+            </a>
+          <% } else { %>
+            <a href="/allURLs" class="btn-add-url">
+              <i class="fas fa-plus"></i>
+              See your URLs only
+            </a>
+          <% } %>
+        </div>
+      <% } %>
+
+      <div class="url-cards-container">
+        <% urls.forEach((url, index) => { %>
+          <div class="url-card">
+            <div class="url-card-header">
+              <span class="url-index"><%= index + 1 %>.</span>
+              <span class="url-short">
+                <a href="http://localhost:8000/url/<%= url.shortURL %>" target="_blank">
+                  <%= url.shortURL %>
+                </a>
+              </span>
+            </div>
+            <div class="url-real">
+              <a href="<%= url.realURL %>" target="_blank">
+                <%= url.realURL %>
+              </a>
+            </div>
+            <div class="url-clicks">
+              <i class="fas fa-mouse"></i> <%= url.visitHistory.length %> Clicks
+            </div>
+            <div class="url-actions">
+              <form method="post" action="/url/delete/<%= url.shortURL %>" onsubmit="return confirm('Are you sure you want to delete this URL?');">
+                <button type="submit" class="delete-btn"><i class="fas fa-trash"></i></button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="empty-msg">You haven’t shortened any URLs yet.</p>
+    <% } %>
+  </div>
+  <%- include("partials/header-scripts") %>
+</body>
+</html>

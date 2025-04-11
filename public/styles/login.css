@@ -1,0 +1,142 @@
+/* public/styles/auth.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1f1f2f, #2d2d44);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+  }
+  
+  .login-card {
+    background-color: #2e2e42;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.8s ease;
+  }
+  
+  .login-header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .login-icon {
+    font-size: 36px;
+    color: #4cafef;
+    margin-bottom: 10px;
+  }
+  
+  .login-header h2 {
+    margin: 5px 0;
+    font-size: 26px;
+  }
+  
+  .login-header p {
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  .input-group {
+    margin-bottom: 18px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #ccc;
+  }
+  
+  .input-group label i {
+    margin-right: 6px;
+    color: #4cafef;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #3a3a54;
+    color: #ffffff;
+    font-size: 15px;
+  }
+  
+  .input-group input:focus {
+    outline: 2px solid #4cafef;
+    background-color: #444465;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4cafef;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn i {
+    margin-left: 6px;
+  }
+  
+  .login-btn:hover {
+    background-color: #45a1e6;
+  }
+  
+  .login-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-footer a {
+    color: #4cafef;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 480px) {
+    .login-card {
+      padding: 25px 20px;
+    }
+  
+    .login-header h2 {
+      font-size: 22px;
+    }
+  
+    .login-btn {
+      font-size: 15px;
+    }
+  }
+  

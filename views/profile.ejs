@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/profile.css" />
+</head>
+<body>
+
+  <!-- Header Placeholder -->
+  <%- include("partials/header") %>
+
+  <div class="profile-container">
+    <h1><i class="fas fa-user-circle"></i> Your Profile</h1>
+
+    <div class="profile-card">
+      <div class="profile-info">
+        <div class="info-item">
+          <span class="label">Name</span>
+          <span class="value">
+            <%= user.name %>
+            <% if (user.role === "ADMIN") { %>
+              <span class="admin-tag">(Admin)</span>
+            <% } %>
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value"><%= user.email %></span>
+        </div>
+        <div class="info-item">
+          <span class="label">Joined</span>
+          <span class="value"><%= user.createdAt.toDateString() %></span>
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <a href="/edit-profile" class="btn edit"><i class="fas fa-user-edit"></i> Edit Profile</a>
+        <a href="/user/logout" class="btn logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+        <% if (user.role === "ADMIN") { %>
+          <a href="/admin/requests" class="btn requests">
+            <i class="fas fa-envelope-open-text"></i> See Requests
+          </a>
+        <% } else { %>
+          <a href="/user/request" class="btn requests">
+            <i class="fas fa-paper-plane"></i> make Request
+          </a>
+        <% } %>
+        
+      </div>
+    </div>
+  </div>
+  <%- include("partials/header-scripts") %>
+  
+</body>
+</html>

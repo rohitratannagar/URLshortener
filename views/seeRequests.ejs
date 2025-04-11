@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All User Requests</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/seeRequests.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <%- include("partials/header") %>
+
+  <main class="requests-container">
+    <h1><i class="fas fa-clipboard-list"></i> All User Requests</h1>
+
+    <% if (requests && requests.length > 0) { %>
+      <div class="card-list">
+        <% requests.forEach((req) => { %>
+          <div class="request-card">
+            <div class="card-header">
+              <h2><i class="fas fa-user"></i> <%= req.user?.name || 'Unknown User' %></h2>
+              <span class="date"><%= new Date(req.createdAt).toLocaleString() %></span>
+            </div>
+            <div class="card-body">
+              <p><strong>Email:</strong> <%= req.user?.email || 'Not provided' %></p>
+              <p><strong>Request:</strong> <%= req.message %></p>
+            </div>
+            <div class="action-buttons">
+              <form method="POST" action="/admin/requests/approve/<%= req.user.email %>" 
+                    onsubmit="return confirm('Are you sure you want to APPROVE this request?')">
+                <button class="btn btn-approve" type="submit">Approve</button>
+              </form>
+              <form method="POST" action="/admin/requests/cancel/<%= req.user._id %>" 
+                    onsubmit="return confirm('Are you sure you want to CANCEL this request?')">
+                <button class="btn btn-cancel" type="submit">Cancel</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="no-requests-msg">No requests submitted yet.</p>
+    <% } %>
+  </main>
+  <%- include("partials/header-scripts") %>
+</body>
+</html>

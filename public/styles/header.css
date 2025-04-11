@@ -1,0 +1,143 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 80px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a2e;
+  color: #ffffff;
+}
+
+/* Header Styles */
+.home-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #2c2c3e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Navbar */
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Logo */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4cafef;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo i {
+  font-size: 22px;
+}
+
+/* Toggle Button */
+.menu-toggle {
+  display: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Nav Links (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li {
+  /* Desktop items: no extra padding needed */
+  padding: 0;
+}
+
+.nav-links li a {
+  position: relative;           /* positioning context for pseudo-element */
+  display: inline-flex;         /* inline-flex for proper alignment of icon and text */
+  align-items: center;
+  gap: 6px;
+  color: #ffffffcc;
+  text-decoration: none;
+  font-size: 16px;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #4cafef;
+}
+
+.nav-links li a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background-color: #4cafef;
+  border-radius: 2px;
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 768px) {
+  /* Show hamburger toggle */
+  .menu-toggle {
+    display: block;
+  }
+  
+  /* Ensure navbar content stays on one line */
+  .navbar {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  
+  /* Mobile Menu: slide-in panel from the right occupying 70% of the width */
+  .nav-links {
+    position: fixed;
+    top: 80px; /* start right below the fixed header */
+    right: -70%;  /* offscreen initially (width = 70%) */
+    width: 70%;
+    height: calc(100% - 80px); /* full height minus header height */
+    background-color: #2c2c3e;
+    flex-direction: column;
+    padding-top: 0; /* no extra gap so items start immediately */
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  /* Slide the panel into view */
+  .nav-links.show {
+    transform: translateX(-70%);
+  }
+
+  /* Mobile menu list items */
+  .nav-links li {
+    width: 100%;
+    padding: 12px 24px;
+    text-align: left;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    display: block;
+    padding: 10px 0;
+  }
+}

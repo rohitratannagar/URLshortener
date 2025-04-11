@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/home.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  
+</head>
+<body>
+  <!-- Header -->
+  <%- include("partials/header") %>
+
+  <main class="main-content">
+    <section class="hero">
+      <h1><i class="fas fa-compress-alt"></i> Shorten Your Long URLs</h1>
+      <p>Paste a long URL below and we'll make it short and shareable.</p>
+
+      <form method="POST" action="/url" class="url-form">
+        <input type="url" name="url" placeholder="Paste your long URL here..." required />
+        <button type="submit"><i class="fas fa-magic"></i> Shorten</button>
+      </form>
+
+      <% if (locals.id) { %>
+        <div class="short-url-box">
+          <p>Short URL:</p>
+          <a href="/url/<%= id %>" target="_blank">http://localhost:8000/url/<%= id %></a>
+          <button onclick="copyToClipboard('http://localhost:8000/url/<%= id %>')">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+        </div>
+      <% } %>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <i class="fas fa-bolt"></i>
+        <h3>Fast</h3>
+        <p>Get your short links instantly.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-chart-line"></i>
+        <h3>Trackable</h3>
+        <p>Monitor link clicks easily.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-lock"></i>
+        <h3>Secure</h3>
+        <p>Privacy-friendly and reliable.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 URL Shortener. All rights reserved.</p>
+  </footer>
+  <%- include("partials/header-scripts") %>
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
