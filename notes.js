@@ -82,3 +82,35 @@ app.use(checkForAuthentication());
 // between collections.
 
 // Suppose you have a Request model like this:
+
+
+// If I approve someone as admin, can they be logged out immediately?
+
+// With JWT? It's tricky but possible, here's how:
+
+// ✅ Option 1: Token Blacklisting (Recommended for security)
+// When someone is made admin, add their current token to a blacklist (e.g., in Redis or your DB). 
+// On each authenticated request, check if the token is blacklisted.
+
+// If blacklisted → deny access and force re-login.
+
+// Can be scoped per-user easily.
+
+// ✅ Option 2: Change tokenVersion
+// Add a tokenVersion field in your user schema.
+
+// When you issue a token, include tokenVersion in the JWT payload.
+
+// When approving the user as admin, increment their tokenVersion.
+
+// On every request, compare the JWT's tokenVersion with the one in DB.
+
+// If it doesn’t match → token is invalid → force logout.
+
+// ✅ Option 3: Just force logout client-side (for basic cases)
+// When a user’s role is changed, and they still have an old token, just show an error on next request like:
+
+// “Your session has expired. Please log in again.”
+
+// This is easier but less secure unless tokens are short-lived.
+

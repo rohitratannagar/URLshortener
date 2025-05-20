@@ -6,8 +6,28 @@
   <title>Sign Up</title>
   <link rel="stylesheet" href="/styles/signup.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #f44336;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .popup.show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <div class="popup" id="errorPopup">Email already exists</div>
+
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
@@ -15,7 +35,8 @@
         <h2>Join Us</h2>
         <p>Create your new account</p>
       </div>
-      <form method="POST" action="/user">
+
+      <form id="signupForm">
         <div class="input-group">
           <label for="name"><i class="fas fa-user"></i> Username</label>
           <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -39,5 +60,42 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          window.location.href = '/';
+        } else {
+          showErrorPopup(data.message || 'Email already exists');
+        }
+      } catch (err) {
+        showErrorPopup('An error occurred. Please try again.');
+      }
+    });
+
+    function showErrorPopup(message) {
+      const popup = document.getElementById('errorPopup');
+      popup.textContent = message;
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 3000);
+    }
+  </script>
 </body>
 </html>

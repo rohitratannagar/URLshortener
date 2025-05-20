@@ -6,12 +6,15 @@ const urlRoute = require('./routes/url.routes');
 const userRoute = require('./routes/user.routes');
 const staticRoute = require('./routes/static.routes');
 const adminRoute = require('./routes/admin.routes')
+const dotenv = require("dotenv")
+
+dotenv.config();
 
 const {checkForAuthentication, restrictTo} = require('./middlewares/auth.middleware');
 
 const connectDB = require('./connection.js');
 const URL = require('./models/url.models')
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 connectDB('mongodb://127.0.0.1:27017/urlshortener')
