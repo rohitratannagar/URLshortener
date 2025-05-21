@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
               <p><strong>Email:</strong> <%= req.user?.email || 'Not provided' %></p>
-              <p><strong>Request:</strong> <%- req.message %></p>
+              <p><strong>Request:</strong> <%= req.message %></p>
             </div>
             <div class="action-buttons">
               <form method="POST" action="/admin/requests/approve/<%= req.user.email %>" 
