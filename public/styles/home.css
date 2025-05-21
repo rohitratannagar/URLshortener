@@ -189,8 +189,12 @@ body {
   margin-top: 20px;
   padding: 15px;
   border: 1px solid #ccc;
+  color: brown;
   background-color: #f9f9f9;
   animation: popIn 0.5s ease-out;
+}
+.short-url-box a{
+  color: brown;
 }
 
 @keyframes popIn {
