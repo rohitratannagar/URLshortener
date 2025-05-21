@@ -107,6 +107,20 @@ h1 {
   color: var(--normal-color);
   background-color: var(--badge-bg-normal);
 }
+form {
+  display: inline-block;
+}
+.request-btn {
+  padding: 6px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 999px;;
+  cursor: pointer;
+}
+.request-btn:hover {
+  background-color: #45a049;
+}
 
 /* Responsive tweaks */
 @media (max-width: 600px) {

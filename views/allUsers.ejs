@@ -21,7 +21,12 @@
             <h3><%= admin.name %></h3>
             <p>Email: <%= admin.email %></p>
             <div class="badge">Admin</div>
-            <button class="friend">add friend</button>
+            
+            <!-- New Feature: Request to Admin -->
+            <form action="/user/request" method="POST" style="margin-top: 10px;">
+              <input type="hidden" name="adminId" value="<%= admin._id %>">
+              <button type="submit" class="request-btn">Request</button>
+            </form>
           </div>
         <% }) %>
       </div>

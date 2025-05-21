@@ -6,6 +6,7 @@ const urlRoute = require('./routes/url.routes');
 const userRoute = require('./routes/user.routes');
 const staticRoute = require('./routes/static.routes');
 const adminRoute = require('./routes/admin.routes')
+const openURLroute =  require('./routes/open.routes');
 const allUsersRoute = require('./routes/allUsers.routes')
 const dotenv = require("dotenv")
 
@@ -37,6 +38,7 @@ app.use('/user',userRoute);
 app.use('/url', restrictTo (['USER', 'ADMIN']), urlRoute);
 app.use('/admin',restrictTo(['ADMIN']),adminRoute);
 app.use('/allUsers',restrictTo (['USER', 'ADMIN']),allUsersRoute);
+app.use('/open',openURLroute);
 
 app.listen(PORT, ()=>{
     console.log(`server started http://localhost:${PORT}`);
