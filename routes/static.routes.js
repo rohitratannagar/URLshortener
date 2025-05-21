@@ -29,7 +29,7 @@ router.get('/allURLs',restrictTo(['USER','ADMIN']),async (req,res)=>{
    
     const URLs = await URL.find({createdBy: req.user._id});
     
-    return res.render("AllURLs",{
+    return res.render("allURLs",{
         urls: URLs,
         currentPage: 'URL',
         role: req.user.role,

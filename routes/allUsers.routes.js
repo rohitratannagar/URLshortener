@@ -14,7 +14,7 @@ router.get('/', async (req,res)=>{
         role: "ADMIN",
         _id: { $ne: req.user._id }
     });
-    return res.render("AllUsers",{
+    return res.render("allUsers",{
         users: users,
         admins: admins,
         currentPage: 'users',

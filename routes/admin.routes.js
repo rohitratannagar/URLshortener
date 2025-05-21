@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/allURLs', async (req,res)=>{
     const URLs = await URL.find({});
-    return res.render("AllURLs",{
+    return res.render("allURLs",{
         urls: URLs,
         currentPage: 'URL',
         role: 'ADMIN',
